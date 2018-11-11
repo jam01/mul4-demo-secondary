@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="87cba820-ca1b-4522-b8e2-b4c9f8d7a2d8" >
+		<http:listener-connection host="${http.host}" port="${http.port}" />
+	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="28cf83f5-5266-4598-aa90-328cbeadc9ee" file="properties.yaml" />
+	<flow name="demo-secondaryFlow" doc:id="1d1ea9c3-b93c-45a7-9b63-14e58e349bdc" >
+		<http:listener doc:name="Listener" doc:id="95c6fd77-765f-4ab3-aabd-1f192cc92fb6" config-ref="HTTP_Listener_config" path="/crm/contact/91"/>
+		<set-payload value='{"name":"John Doe"}' doc:name="Set Payload" doc:id="ce31d576-339a-420a-9782-af89dcc8aca0" mimeType="application/json"/>
+	</flow>
+</mule>
